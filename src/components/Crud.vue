@@ -1,6 +1,6 @@
 <template>
   <Toast position="top-center" />
-  <div class="w-full h-full md:flex">
+  <div class="diva w-full h-full md:flex">
     <div
       class="absolute md:top-0 top-1 py-2 bg-red-500 md:w-2/5 w-full text-white text-center"
       v-if="show"
@@ -86,7 +86,6 @@ import { ref } from "vue";
 
 import Toast from "primevue/toast";
 import { useToast } from "primevue/usetoast";
-import { Logger } from "sass";
 
 const toast = useToast();
 let Name = ref("");
@@ -170,5 +169,9 @@ td {
 }
 td {
   text-align: center;
+}
+
+:deep InputText:focus diva{
+margin-top: 5vh;
 }
 </style>
