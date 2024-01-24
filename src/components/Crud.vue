@@ -120,30 +120,32 @@ const data = ref([
 function Delete(index) {
   showError();
   data.value.splice(index, 1);
-if (data.value.length == 0) {
+  if (data.value.length == 0) {
     (Name.value = ""), (email.value = ""), (job.value = "");
-}
+  }
 }
 function Send() {
-  if (id.value != null) {
-    let userFind = data.value.find((user) => user.id == id.value);
-    userFind.name = Name.value;
-    userFind.email = email.value;
-    userFind.job = job.value;
-    (handle = ""), (Name.value = ""), (email.value = ""), (job.value = "");
-    id.value = null;
-  } else if (
-    (Name.value === "" || "") &&
-    (email.value === "" || "") &&
-    (job.value === "" || "")
-  ) {
-    show.value = true;
-    handle = `Iltimos maydoni to'ldiring`;
-    setTimeout(() => {
-      show.value = false;
-    }, 3000);
-    return;
-  } else {
+  if (data.value.id == id.value) {
+    if (id.value != null) {
+      let userFind = data.value.find((user) => user.id == id.value);
+      userFind.name = Name.value;
+      userFind.email = email.value;
+      userFind.job = job.value;
+      (handle = ""), (Name.value = ""), (email.value = ""), (job.value = "");
+      id.value = null;
+    }} else if (
+      (Name.value === "" || "") &&
+      (email.value === "" || "") &&
+      (job.value === "" || "")
+    ) {
+      show.value = true;
+      handle = `Iltimos maydoni to'ldiring`;
+      setTimeout(() => {
+        show.value = false;
+      }, 3000);
+      return;
+    }
+   else {
     let message = {
       id: data.value.length + 1,
       name: Name.value,
@@ -173,7 +175,7 @@ td {
   text-align: center;
 }
 
-:deep InputText:focus diva{
-margin-top: 5vh;
+:deep InputText:focus diva {
+  margin-top: 5vh;
 }
 </style>
