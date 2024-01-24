@@ -119,8 +119,10 @@ const data = ref([
 ]);
 function Delete(index) {
   showError();
-
   data.value.splice(index, 1);
+if (data.value.length == 0) {
+    (Name.value = ""), (email.value = ""), (job.value = "");
+}
 }
 function Send() {
   if (id.value !== null) {
