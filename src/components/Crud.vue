@@ -41,9 +41,10 @@
         @click="Send"
       />
     </div>
-    <div class="SecondSection md:w-3/5 w-full md:border">
+    <!-- SecondSection -->
+    <div class="SecondSection md:w-3/5 w-full md:border overflow-auto h-[21.1rem]">
       <table border="border-2" class="w-full border">
-        <tr>
+        <tr class="sticky top-0 z-10 bg-white">
           <th>N0</th>
           <th>Name</th>
           <th>Eamail</th>
@@ -116,6 +117,37 @@ const data = ref([
     email: "Hamonjon@gmail.com",
     job: "Hamonjon Jobs MCHJ",
   },
+  {
+    id: 3,
+    name: "Shomirza",
+    email: "Shomirza@gmail.com",
+    job: "Shomirza YTT",
+  },
+  {
+    id: 4,
+    name: "Eshmat",
+    email: "Eshmat@gmail.com",
+    job: "Eshmat PHP",
+  },
+  {
+    id: 5,
+    name: "Jamshid",
+    email: "Jamshid@gmail.com",
+    job: "Jamshid Mobile",
+  },
+  {
+    id: 6,
+    name: "O'tkir",
+    email: "O'tkir@gmail.com",
+    job: "O'tkir C++",
+  },
+  {
+    id: 7,
+    name: "Bunyod",
+    email: "Bunyod@gmail.com",
+    job: "Bunyod C++",
+  },
+
 ]);
 function Delete(index) {
   showError();
@@ -125,22 +157,18 @@ function Delete(index) {
   }
 }
 function Send() {
-
-
-for(let item of data.value) {
-
-if (item.id == id.value) {
-    
-
-
-  if (id.value != null) {
-    let userFind = data.value.find((user) => user.id == id.value);
-    userFind.name = Name.value;
-    userFind.email = email.value;
-    userFind.job = job.value;
-    (handle = ""), (Name.value = ""), (email.value = ""), (job.value = "");
-    id.value = null;
-  }}}  
+  for (let item of data.value) {
+    if (item.id == id.value) {
+      if (id.value != null) {
+        let userFind = data.value.find((user) => user.id == id.value);
+        userFind.name = Name.value;
+        userFind.email = email.value;
+        userFind.job = job.value;
+        (handle = ""), (Name.value = ""), (email.value = ""), (job.value = "");
+        id.value = null;
+      }
+    }
+  } 
   if (Name.value === "" && email.value === "" && job.value === "") {
     show.value = true;
     handle = `Iltimos maydoni to'ldiring`;
