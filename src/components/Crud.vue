@@ -125,27 +125,30 @@ function Delete(index) {
   }
 }
 function Send() {
-  if (data.value.id == id.value) {
-    if (id.value != null) {
-      let userFind = data.value.find((user) => user.id == id.value);
-      userFind.name = Name.value;
-      userFind.email = email.value;
-      userFind.job = job.value;
-      (handle = ""), (Name.value = ""), (email.value = ""), (job.value = "");
-      id.value = null;
-    }} else if (
-      (Name.value === "" || "") &&
-      (email.value === "" || "") &&
-      (job.value === "" || "")
-    ) {
-      show.value = true;
-      handle = `Iltimos maydoni to'ldiring`;
-      setTimeout(() => {
-        show.value = false;
-      }, 3000);
-      return;
-    }
-   else {
+
+
+for(let item of data.value) {
+
+if (item.id == id.value) {
+    
+
+
+  if (id.value != null) {
+    let userFind = data.value.find((user) => user.id == id.value);
+    userFind.name = Name.value;
+    userFind.email = email.value;
+    userFind.job = job.value;
+    (handle = ""), (Name.value = ""), (email.value = ""), (job.value = "");
+    id.value = null;
+  }}}  
+  if (Name.value === "" && email.value === "" && job.value === "") {
+    show.value = true;
+    handle = `Iltimos maydoni to'ldiring`;
+    setTimeout(() => {
+      show.value = false;
+    }, 3000);
+    return;
+  } else {
     let message = {
       id: data.value.length + 1,
       name: Name.value,
