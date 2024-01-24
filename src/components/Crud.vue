@@ -125,20 +125,20 @@ if (data.value.length == 0) {
 }
 }
 function Send() {
-  if (id.value !== null) {
+  if (id.value != null) {
     let userFind = data.value.find((user) => user.id == id.value);
     userFind.name = Name.value;
     userFind.email = email.value;
     userFind.job = job.value;
     (handle = ""), (Name.value = ""), (email.value = ""), (job.value = "");
+    id.value = null;
   } else if (
-    (Name.value === "" || " ") &&
-    (email.value === "" || " ") &&
-    (job.value === "" || " ")
+    (Name.value === "" || "") &&
+    (email.value === "" || "") &&
+    (job.value === "" || "")
   ) {
     show.value = true;
     handle = `Iltimos maydoni to'ldiring`;
-
     setTimeout(() => {
       show.value = false;
     }, 3000);
