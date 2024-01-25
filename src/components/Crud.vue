@@ -16,6 +16,8 @@
           v-model="Name"
           class="border w-full p-2"
           placeholder="Name"
+          :class="{ 'border-red-600 shadow-xl': show2 }"
+          @onfocus="ShowInput()"
         />
       </span>
       <!-- input 2 -->
@@ -24,6 +26,9 @@
           v-model="email"
           class="border w-full p-2"
           placeholder="Email"
+          :class="{ 'border-red-600 shadow-xl': show2 }"
+          
+          @onfocus="ShowInput()"
         />
       </span>
       <!-- input 3 -->
@@ -33,6 +38,8 @@
           v-model="job"
           class="border w-full p-2"
           placeholder="Job"
+          :class="{ 'border-red-600 shadow-xl': show2 }"
+          @onfocus="ShowInput()"
         />
       </span>
       <Button
@@ -42,13 +49,16 @@
       />
     </div>
     <!-- SecondSection -->
-    <div class="SecondSection md:w-3/5 w-full md:border overflow-auto h-[21.1rem]">
+    <div
+      class="SecondSection md:w-3/5 w-full md:border overflow-auto h-[21.1rem]"
+    >
       <table border="border-2" class="w-full border">
         <tr class="sticky top-0 z-10 bg-white">
           <th>N0</th>
           <th>Name</th>
           <th>Eamail</th>
           <th>Job</th>
+          <th>dawload</th>
           <th>Update</th>
           <th>Delete</th>
         </tr>
@@ -57,6 +67,16 @@
           <td>{{ item.name }}</td>
           <td>{{ item.email }}</td>
           <td>{{ item.job }}</td>
+          <td>
+            <a href="././../../cow.jpg" download=""
+              ><button
+                class="border p-1 rounded-lg"
+                :class="{ hidden: !item.url }"
+              >
+                dowload
+              </button></a
+            >
+          </td>
           <td>
             <Button
               icon="pi pi-upload text-blue-400 p-2"
@@ -80,7 +100,6 @@
 </template>
 
 <script setup>
-import "primeicons/primeicons.css";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import { ref } from "vue";
@@ -94,6 +113,7 @@ let email = ref("");
 let job = ref("");
 let handle = "";
 let show = ref(false);
+let show2 = ref(false);
 let id = ref(null);
 
 const showError = () => {
@@ -110,44 +130,51 @@ const data = ref([
     name: "Firdavs",
     email: "firdavs@gmail.com",
     job: "Frontend development",
+    isButton: false,
   },
   {
     id: 2,
     name: "Hamonjon",
     email: "Hamonjon@gmail.com",
     job: "Hamonjon Jobs MCHJ",
+    url: "https://wallpaperset.com/w/full/9/a/8/199702.jpg",
+    isButton: true,
   },
   {
     id: 3,
     name: "Shomirza",
     email: "Shomirza@gmail.com",
     job: "Shomirza YTT",
+    isButton: false,
   },
   {
     id: 4,
     name: "Eshmat",
     email: "Eshmat@gmail.com",
     job: "Eshmat PHP",
+    isButton: false,
   },
   {
     id: 5,
     name: "Jamshid",
     email: "Jamshid@gmail.com",
     job: "Jamshid Mobile",
+    isButton: false,
   },
   {
     id: 6,
     name: "O'tkir",
     email: "O'tkir@gmail.com",
     job: "O'tkir C++",
+    isButton: false,
   },
   {
     id: 7,
     name: "Bunyod",
     email: "Bunyod@gmail.com",
     job: "Bunyod C++",
+    isButton: false,
   },
-
 ]);
 function Delete(index) {
   showError();
@@ -168,8 +195,9 @@ function Send() {
         id.value = null;
       }
     }
-  } 
+  }
   if (Name.value === "" && email.value === "" && job.value === "") {
+    show2.value = true;
     show.value = true;
     handle = `Iltimos maydoni to'ldiring`;
     setTimeout(() => {
@@ -177,6 +205,8 @@ function Send() {
     }, 3000);
     return;
   } else {
+  show2.value = false;
+
     let message = {
       id: data.value.length + 1,
       name: Name.value,
@@ -185,6 +215,8 @@ function Send() {
     };
     data.value.push(message);
     show.value = false;
+    show2.value = false;
+
     (handle = ""), (Name.value = ""), (email.value = ""), (job.value = "");
   }
 }
@@ -194,6 +226,9 @@ function Update(idw) {
   email.value = userFind.email;
   job.value = userFind.job;
   id.value = idw;
+}
+
+function ShowInput() {
 }
 </script>
 
